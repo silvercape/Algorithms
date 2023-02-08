@@ -14,7 +14,7 @@ int recur(int n, int m) {
     if (n == 1) {
         return 1;
     }
-
+    // 最后位置直接取余会得到 0 ，为避免这种情况，先 -1 再 +1.
     return (recur(n - 1, m) + m - 1) % n + 1;
 
 }
