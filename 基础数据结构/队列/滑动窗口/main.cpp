@@ -61,14 +61,15 @@ int main() {
         // 入队
         q.push_back(i);
 
-        if (i + 1 - k >= 0) {
-            // 去头
-            if (q.front() < i + 1 - k) {
-                q.pop_front();
-            }
-            // 输出最小值
-            printf("%d ", a[q.front()]);
+        // 去头 先去尾 再入队 一定不空
+        if (q.front() < i + 1 - k) {
+            q.pop_front();
         }
+
+        // 输出最小值 只有窗口完全时进行输出
+        if (i + 1 - k >= 0)
+            printf("%d ", a[q.front()]);
+
     }
     printf("\n");
     /*
