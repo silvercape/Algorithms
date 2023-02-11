@@ -139,6 +139,21 @@ int upperBound(int* arr, int len, int tar){
  * r( >  l] <=  最后一个小于等于 x 的数  a a a x x x [x] b b b
  * r( >= l] <   最后一个小于    x 的数  a a [a] x x x x b b b
  */
+/*
+ * 如果用 [l,r]
+ * 则 )l  (r  >= 和 <= 可随意分配
+ * 最后一定是 []
+ *          lr
+ * 这时必须l++或r--与取整方式无关
+ * 循环结束时 l>r但没有用
+ * 要知道最后一次结果必须分开判断
+ * 举个例子
+ * if <= update ans
+ *  最后ans的位置就是最后一个<=的位置
+ *  <  同理
+ *  > >= 第一个的位置
+ *  但注意初始化ans的值，若未匹配需要给ans正确的初始值
+ */
 
 int lower_bound(int *arr, int len, int tar) {
     int l = 0, r = len;
@@ -150,6 +165,22 @@ int lower_bound(int *arr, int len, int tar) {
             l = mid + 1;
     }
     return l;
+}
+
+
+int lower_bound_version_2(int *arr, int len, int tar) {
+    int l = 0, r = len-1;
+    int ans=len;
+    while (l <= r) {
+        int mid = (l + r) >> 1;
+        if (arr[mid] >= tar) {
+            ans=mid;
+            r = mid - 1;
+        }
+        else
+            l = mid + 1;
+    }
+    return ans;
 }
 
 int upper_bound(int* arr, int len, int tar) {
@@ -165,9 +196,9 @@ int upper_bound(int* arr, int len, int tar) {
 }
 int main(){
     int testArray[]={1,1,2,3,3,4,4,4,5,5,6,6,6,7,7,7};
-    printf("lower minus find %d at %d\n", 5, lowerBoundMinus(testArray,16,5));
-    printf("lower  find %d at %d\n", 5, lower_bound(testArray,16,5));
-    printf("upper  find %d at %d\n", 5, upper_bound(testArray,16,5));
+    printf("lower minus find %d at %d\n", 5, lowerBoundMinus(testArray,16,15));
+    printf("lower  find %d at %d\n", 5, lower_bound(testArray,16,15));
+    printf("lower  2  find %d at %d\n", 5, lower_bound_version_2(testArray,16,15));
 
     return 0;
 }
