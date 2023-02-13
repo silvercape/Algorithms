@@ -1,0 +1,15 @@
+ans;
+void dfs(layerNumber, otherParameters){
+    if (out judge is true){
+        update ans;
+        return;
+    }
+    (剪枝)
+    for (enumerate every next layer case){
+        if(used[i]==0){
+            used[i]=1;
+            dfs(layerNumber+1,otherParameters);
+            used[i]=0;
+        }
+    }
+}
