@@ -10,3 +10,6 @@ add_executable(math 基础数据结构/链表/约瑟夫问题/math.cpp)
 add_executable(main 搜索/DFS/全排列/main.cpp)
 
 add_executable(dfs-main DebugDirectory/dfs-main.cpp)
+
+add_executable(LibUfTry 高级数据结构/并查集/LibUfTry.cpp)
+add_executable(SelfUfTry 高级数据结构/并查集/SelfUfTry.cpp)

@@ -31,7 +31,6 @@ public:
 class UfArray {
 public:
     UfArray() {
-        cout << "UfArray Init" << endl;
         arr = new point[UfArray::MAXN][UfArray::MAXN];
         for (int i = 0; i < UfArray::MAXN; ++i) {
             for (int j = 0; j < UfArray::MAXN; ++j) {
