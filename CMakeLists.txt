@@ -7,7 +7,7 @@ add_subdirectory(基础数据结构/堆/小根堆)
 add_executable(math 基础数据结构/链表/约瑟夫问题/math.cpp)
 
 
-add_executable(main 高级数据结构/并查集/main.cpp)
+add_executable(main 基础数据结构/二叉树和哈夫曼树/序列遍历/main.cpp)
 
 add_executable(dfs-main DebugDirectory/dfs-main.cpp)
 
