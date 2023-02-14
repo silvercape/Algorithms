@@ -137,7 +137,8 @@ void postTraversalNonRecursion(Node *root) {
 }
 
 void preTraversalNonRecursion(Node *root) {
-    Node *head = root;
+    Node *head = headNodeInPreTraversal(root);
+
     while (head) {
         printf("%d ", head->value);
         head = successNodeInPreTraversal(head);
