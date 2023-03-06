@@ -4,6 +4,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 /*
+ * 向下取整 [l, r) mid = (l+r)/2 [0,1) mid 在 0 处更接近左边，就是向下取整
+ */
+/*
  * int lower_bound(int *arr, int len, int tar) {
         int l = 0, r = len - 1;
         while (l < r) {

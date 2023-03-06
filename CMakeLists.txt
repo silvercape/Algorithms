@@ -16,3 +16,6 @@ add_executable(testUF 搜索/DFS/连通性判断/testUF.cpp)
 
 add_executable(bfs-main 搜索/DFS/连通性判断/bfs-main.cpp)
 add_executable(guanghualoudianti 搜索/剪枝/dfs剪枝/guanghualoudianti.cpp)
+add_executable(guanghuaversion2 搜索/剪枝/dfs剪枝/guanghuaversion2.cpp)
+add_executable(BuildTree 搜索/剪枝/dfs剪枝/BuildTree.cpp)
+add_executable(Tarjan 高级数据结构/LCA/Tarjan.cpp)
