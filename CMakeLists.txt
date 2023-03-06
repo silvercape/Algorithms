@@ -7,15 +7,5 @@ add_subdirectory(基础数据结构/堆/小根堆)
 add_executable(math 基础数据结构/链表/约瑟夫问题/math.cpp)
 
 
-add_executable(main 基础数据结构/二叉树和哈夫曼树/序列遍历/main.cpp)
 
-add_executable(dfs-main 搜索/DFS/连通性判断/dfs-main.cpp)
-
-add_executable(uf-self-main 搜索/DFS/连通性判断/uf-self-main.cpp)
-add_executable(testUF 搜索/DFS/连通性判断/testUF.cpp)
-
-add_executable(bfs-main 搜索/DFS/连通性判断/bfs-main.cpp)
-add_executable(guanghualoudianti 搜索/剪枝/dfs剪枝/guanghualoudianti.cpp)
-add_executable(guanghuaversion2 搜索/剪枝/dfs剪枝/guanghuaversion2.cpp)
-add_executable(BuildTree 搜索/剪枝/dfs剪枝/BuildTree.cpp)
-add_executable(Tarjan 高级数据结构/LCA/Tarjan.cpp)
+add_executable(main 动态规划/背包问题/宝物筛选/main.cpp)
