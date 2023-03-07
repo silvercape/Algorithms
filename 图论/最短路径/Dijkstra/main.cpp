@@ -42,7 +42,7 @@ void dijkstra(int st) {
     }
     // use priority_queue
     /*
-     * 存什么？ 结点
+     * 存什么？ 结点或者边(for print_path)
      * 按什么比较？ 结点到source的距离
      * 故需要 {
      *  int node_number;
@@ -57,14 +57,17 @@ void dijkstra(int st) {
      * 返回true则a的优先级<b的优先级
      */
     struct Node {
-        int node_number;
-        long long weight_to_source;
+        int from;
+        int n_id;
+        long long dis_to_src;
 
-        Node(int id, long long w) : node_number(id), weight_to_source(w) {}
+        Node(int id, long long w) : n_id(id), dis_to_src(w) {}
+
+        Node(int from, int id, long long w) : from(from), n_id(id), dis_to_src(w) {}
 
         //注意声明函数为const，否则编译不会通过,表示我们不会修改成员变量的值
         bool operator<(Node node) const {
-            if (weight_to_source > node.weight_to_source)
+            if (dis_to_src > node.dis_to_src)
                 return true;
             return false;
         }
@@ -93,15 +96,16 @@ void dijkstra(int st) {
         while (!q.empty()) {
             Node cur = q.top();
             q.pop();
-            if (vis[cur.node_number])
+            if (vis[cur.n_id])
                 continue;
-            vis[cur.node_number] = true;
-            dis[cur.node_number] = cur.weight_to_source;
+            vis[cur.n_id] = true;
+            pre[cur.n_id] = cur.from;
+            dis[cur.n_id] = cur.dis_to_src;
             // printf("update node %d dis %d\n", cur.node_number, cur.weight_to_source);
-            for (auto item: e[cur.node_number]) {
+            for (auto item: e[cur.n_id]) {
                 if (!vis[item.to]) {
                     // printf("add node %d and dis %d\n", item.to, item.w + cur.weight_to_source);
-                    q.push(Node(item.to, item.w + cur.weight_to_source));
+                    q.push(Node(item.from, item.to, item.w + cur.dis_to_src));
                 }
             }
         }
@@ -116,48 +120,47 @@ void dijkstra(int st) {
              * 一定是vis过的，所以不用比对dis
              * 直接用vis把它筛掉
              */
-            if (vis[cur.node_number])
+            if (vis[cur.n_id])
                 continue;
-            vis[cur.node_number] = true;
-            for (auto item: e[cur.node_number]) {
+            vis[cur.n_id] = true;
+            for (auto item: e[cur.n_id]) {
                 // 这时我们更新，同时减少入队，相比于方法一更优
-                if (!vis[item.to] && dis[item.to] > item.w + cur.weight_to_source) {
+                if (!vis[item.to] && dis[item.to] > item.w + cur.dis_to_src) {
                     pre[item.to] = item.from;
-                    dis[item.to] = item.w + cur.weight_to_source;
-                    q.push(Node(item.to, item.w + cur.weight_to_source));
+                    dis[item.to] = item.w + cur.dis_to_src;
+                    q.push(Node(item.to, item.w + cur.dis_to_src));
                 }
             }
         }
-        /*
+    }
+
+/*
          * 打印最短路径树
          * 每个结点逆序打印即可
          */
-        cout << "Path:"<<endl;
-        for (int i = 1; i <= n; ++i) {
-            for (int j = i; j != st; j = pre[j]) {
-                printf("%d<=", j);
-            }
-            cout << st << endl;
+    cout << "<=Path:" << endl;
+    for (int i = 1; i <= n; ++i) {
+        for (int j = i; j != st; j = pre[j]) {
+            printf("%d<=", j);
         }
-        auto printPath = [&](auto&&self, int i) {
-            if(i == st) {
-                cout<<i;
-                return;
-            }
-            self(self, pre[i]);
-            cout<<"=>"<<i;
-        };
-        /*
-         * 运用递归可以使箭头逆向
-         */
-        cout << "Path:"<<endl;
-        for (int i = 1; i <= n; ++i) {
-            printPath(printPath, i);
-            cout<<endl;
-        }
+        cout << st << endl;
     }
-
-
+    auto printPath = [&](auto &&self, int i) {
+        if (i == st) {
+            cout << i;
+            return;
+        }
+        self(self, pre[i]);
+        cout << "=>" << i;
+    };
+    /*
+     * 运用递归可以使箭头逆向
+     */
+    cout << "=>Path:" << endl;
+    for (int i = 1; i <= n; ++i) {
+        printPath(printPath, i);
+        cout << endl;
+    }
 }
 
 int main() {

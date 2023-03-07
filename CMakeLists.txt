@@ -8,6 +8,6 @@ add_executable(math 基础数据结构/链表/约瑟夫问题/math.cpp)
 
 
 
-add_executable(main 图论/最短路径/Bellman-Ford/main.cpp)
+add_executable(main 图论/最短路径/Dijkstra/main.cpp)
 
 add_executable(test "图论/拓扑排序/基于BFS/Following order/test.cpp")
